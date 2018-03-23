@@ -20,14 +20,14 @@ export class AuthService {
 
   loginEmail(email:string,pass:string){
     return new Promise((resolve,reject)=>{
-      this.afAuth.auth.sigInWithEmailAndPassword(email,pass)
+      this.afAuth.auth.signInWithEmailAndPassword(email,pass)
       .then(userData => resolve(userData),
     err =>reject(err));
     });
   }
 
   getAuth(){
-    return this.afAuth.authState.map(auth=>auth )
+    return this.afAuth.authState.map(auth=>auth );
   }
 
   logout(){
