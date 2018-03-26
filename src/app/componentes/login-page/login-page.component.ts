@@ -42,4 +42,12 @@ export class LoginPageComponent implements OnInit {
         this.ruta.navigate(['/privado']);
     }).catch( error => console.log(error.messages));
   }
+
+  onClickFacebookLogin(){
+    this.authService.loginFacebook()
+    .then((res) => {
+      this.ruta.navigate(['/privado']);
+    }).catch( error => console.log(error.messages));
+
+  }
 }
