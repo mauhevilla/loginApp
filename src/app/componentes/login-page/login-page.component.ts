@@ -48,6 +48,13 @@ export class LoginPageComponent implements OnInit {
     .then((res) => {
       this.ruta.navigate(['/privado']);
     }).catch( error => console.log(error.messages));
-
   }
+
+  onClickTwiterLogin(){
+    this.authService.loginTwiter()
+    .then((res) => {
+      this.ruta.navigate(['/privado']);
+    }).catch( error => console.log(error.messages));
+  }
+
 }
