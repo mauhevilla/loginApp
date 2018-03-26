@@ -12,6 +12,9 @@ import { RegisterPageComponent } from './componentes/register-page/register-page
 import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
 import { NpFoundPageComponent } from './componentes/np-found-page/np-found-page.component';
 
+import {FlashMessagesModule} from 'angular2-flash-messages'
+import {FlashMessagesService} from 'angular2-flash-messages'
+
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth'
 
@@ -19,6 +22,8 @@ import { environment} from '../environments/environment';
 
 import{ AuthService} from './servicios/auth.service';
 import{ AuthGuard} from './guards/auth.guard';
+
+
 
 @NgModule({
   declarations: [
@@ -35,10 +40,11 @@ import{ AuthGuard} from './guards/auth.guard';
     AppRoutingModule,
     FormsModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FlashMessagesModule    
 
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
