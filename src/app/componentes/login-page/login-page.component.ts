@@ -28,13 +28,18 @@ export class LoginPageComponent implements OnInit {
       this.flashMesage.show('Usuario Logeado Correctamente',
       {cssClass:'alert-success',timeout:4000}); 
       this.ruta.navigate(['/privado']);
-    }).catch((error)=>{
-      
+    }).catch((error)=>{      
       this.flashMesage.show(error.messages,
         {cssClass:'alert-danger',timeout:4000});  
       console.log(error);
       this.ruta.navigate(['/login']);
-    })
+    })  
+  }
 
+  onClickGoogleLogin() {
+    this.authService.loginGoogle()
+      .then((res) => {
+        this.ruta.navigate(['/privado']);
+    }).catch( error => console.log(error.messages));
   }
 }
