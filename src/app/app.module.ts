@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './componentes/home-page/home-page.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
-import { LoginPageComponent } from './componentes/login-page/login-page.component';
-import { RegisterPageComponent } from './componentes/register-page/register-page.component';
-import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
-import { NpFoundPageComponent } from './componentes/np-found-page/np-found-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { PrivadoPageComponent } from './components/privado-page/privado-page.component';
+import { NpFoundPageComponent } from './components/np-found-page/np-found-page.component';
 
 import {FlashMessagesModule} from 'angular2-flash-messages'
 import {FlashMessagesService} from 'angular2-flash-messages'
@@ -22,6 +22,7 @@ import { environment} from '../environments/environment';
 
 import{ AuthService} from './servicios/auth.service';
 import{ AuthGuard} from './guards/auth.guard';
+import { CrudTecnicoComponent } from './components/privado-page/crud-tecnico/crud-tecnico.component';
 
 
 
@@ -33,7 +34,8 @@ import{ AuthGuard} from './guards/auth.guard';
     LoginPageComponent,
     RegisterPageComponent,
     PrivadoPageComponent,
-    NpFoundPageComponent
+    NpFoundPageComponent,
+    CrudTecnicoComponent
   ],
   imports: [
     BrowserModule,
