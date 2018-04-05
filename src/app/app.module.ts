@@ -22,9 +22,9 @@ import { environment} from '../environments/environment';
 
 import{ AuthService} from './servicios/auth.service';
 import{ AuthGuard} from './guards/auth.guard';
+
+import { CrudMovimientosComponent } from './components/privado-page/crud-movimientos/crud-movimientos.component';
 import { CrudTecnicoComponent } from './components/privado-page/crud-tecnico/crud-tecnico.component';
-
-
 
 @NgModule({
   declarations: [
@@ -34,8 +34,9 @@ import { CrudTecnicoComponent } from './components/privado-page/crud-tecnico/cru
     LoginPageComponent,
     RegisterPageComponent,
     PrivadoPageComponent,
-    NpFoundPageComponent,
-    CrudTecnicoComponent
+    CrudTecnicoComponent,
+    CrudMovimientosComponent,
+    NpFoundPageComponent
   ],
   imports: [
     BrowserModule,

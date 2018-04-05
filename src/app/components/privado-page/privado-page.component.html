@@ -1,9 +1,54 @@
-<div class="jumbotron mt-3" >
-    <h1 class="display-3">Zona Privada!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-  </div>
+
+<div class="container-fluid">
+        <h2 class="display-3">Zona Privada!</h2>  
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item" *ngIf="!isLogin">
+                  <a class="nav-link active" href="#" routerLink="/crudTecnico">
+                    <span data-feather="home"></span>
+                    Crud Técnicos <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                  <a class="nav-link" href="#" routerLink="/crudMovimientos">
+                    <span data-feather="file"></span>
+                   Crud Movimientos
+                  </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                  <a class="nav-link" href="#">
+                    <span data-feather="shopping-cart"></span>
+                    Listados de Servicios
+                  </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                  <a class="nav-link" href="#">
+                    <span data-feather="users"></span>
+                    Listados de Gastos
+                  </a>
+                </li>
+                <li class="nav-item"*ngIf="!isLogin" >
+                  <a class="nav-link" href="#">
+                    <span data-feather="bar-chart-2"></span>
+                    a definir ...
+                  </a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                  <a class="nav-link" href="#">
+                    <span data-feather="layers"></span>
+                    Consoliddo
+                  </a>
+                </li>
+              </ul>
+  
+              
+            </div>
+          </nav>
+  
+       
+        </div>
+      </div>
+
+
