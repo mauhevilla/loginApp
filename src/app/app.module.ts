@@ -28,8 +28,14 @@ import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth'
 import{ AuthService} from './servicios/auth.service';
 import{ AuthGuard} from './guards/auth.guard';
 
+// importo las animaciones
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import{ ToastrModule} from 'ngx-toastr';
+
 //servicios
 import { TecnicoService} from './servicios/tecnico.service';
+import {MovimientosService}from './servicios/movimientos.service';
+
 
 @NgModule({
   declarations: [
@@ -50,10 +56,12 @@ import { TecnicoService} from './servicios/tecnico.service';
     AppRoutingModule,
     FormsModule,
     AngularFireAuthModule,  
-    FlashMessagesModule 
+    FlashMessagesModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule 
   ],
   providers: [AuthService,AuthGuard,FlashMessagesService,
-    TecnicoService],
+    TecnicoService,MovimientosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

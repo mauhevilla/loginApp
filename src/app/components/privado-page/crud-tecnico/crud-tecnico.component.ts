@@ -4,7 +4,7 @@ import{ Tecnico} from '../../../models/tecnico.service';
 // traer el servicio
 import { TecnicoService} from '..//../../servicios/tecnico.service' ;
 // impor toaster para memsajes
-//import { ToastrService} from 'ngx-toastr';
+import { ToastrService} from 'ngx-toastr';
 
 // impor ngForm
 import { NgForm} from '@angular/forms';
@@ -17,7 +17,8 @@ import { NgForm} from '@angular/forms';
 export class CrudTecnicoComponent implements OnInit {
   listTecnico : Tecnico[];
 
-  constructor(private tecnicoService : TecnicoService) { }
+  constructor(private tecnicoService : TecnicoService,
+              private toast : ToastrService) { }
 
   ngOnInit() {
     this.tecnicoService.getTecnicos();
@@ -32,18 +33,16 @@ export class CrudTecnicoComponent implements OnInit {
         this.listTecnico.push(x as Tecnico);
       });
     });
-   
-    //
   }
 
   onSubmit (tecnicoForm : NgForm){
     if(tecnicoForm.value.$key == null){
       this.tecnicoService.insertTecnico(tecnicoForm.value)  ;
-    //  this.toast.success('Operacion Agregar','Producto Grabado');
+      this.toast.success('Operacion Agregar','Producto Grabado');
     }     
     else{
       this.tecnicoService.updateTecnico(tecnicoForm.value);
-    //  this.toast.success('Operacion Modificar','Producto Actualizado');
+      this.toast.success('Operacion Modificar','Producto Actualizado');
     }  
     this.resetForm(tecnicoForm);
   }
@@ -62,7 +61,7 @@ export class CrudTecnicoComponent implements OnInit {
   onDelete($key:string){
     if(confirm('Esta seguro de querer Eliminarlo ?')){
       this.tecnicoService.deletTecnico($key);
-     // this.toast.success('Successfull Operation','Producto Elimnado ...');
+      this.toast.success('Successfull Operation','Producto Elimnado ...');
   }
    
   
