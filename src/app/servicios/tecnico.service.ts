@@ -5,6 +5,7 @@ import { Tecnico} from '../models/tecnico.service';
 
 @Injectable()
 export class TecnicoService {
+
   listTecnico : AngularFireList<any>;
   selectedTecnico : Tecnico = new Tecnico();
 
@@ -25,16 +26,16 @@ export class TecnicoService {
   }
   // update
   updateTecnico(tecnico :Tecnico){
-    this.listTecnico.update(tecnico.keys,{
-      nombre :tecnico.nombre,
+    this.listTecnico.update(tecnico.$key,{
+      nombre   :tecnico.nombre,
       direccion:tecnico.direccion,
-      correo:tecnico.correo,
-      telefono:tecnico.telefono
+      correo   :tecnico.correo,
+      telefono :tecnico.telefono
     });   
   }
   // delete
-  deletTecnico(keys:string){
-    this.listTecnico.remove(keys);
+  deletTecnico($key:string){
+    this.listTecnico.remove($key);
   }
 
 }

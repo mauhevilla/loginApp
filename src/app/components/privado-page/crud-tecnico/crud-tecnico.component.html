@@ -1,4 +1,78 @@
 <p>
-  crud-tecnico works!
-  en algun momento
+  crud-tecnico works!  
 </p>
+<div class="card">
+    <div class="card-body">
+      <h6 class="text-center">Lista de Tecnicos</h6 >
+          <table class="table table-sm  table-hover">
+              <body>
+                <tr *ngFor ="let tecnico of listTecnico">
+                  <td>{{tecnico.nombre}}</td>
+                  <td>{{tecnico.direccion}}</td>               
+                  <td>{{tecnico.telefono}}</td>               
+                  <td>{{tecnico.correo}}</td> 
+                  <td>
+                    <a class="btn btn-secondary text-white "  (click)="onEdit(tecnico)" >
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a class="btn btn-danger text-white " (click)="onDelete(tecnico.keys)">
+                      <i class="fas fa-trash-alt"></i>
+                  </a>  
+                  </td>
+                </tr> 
+              </body>
+          </table>    
+    </div>
+  </div>
+  <div class="card mt-5">
+      <div class="card-body">
+        <form #tecnicoForm="ngForm" (ngSubmit)="onSubmit(tecnicoForm)">      
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="tecnicoService.selectedTecnico.$key">
+          <div class="form-group">
+              <input type="text"
+                  class="form-control"
+                  name="nombre"
+                  #nombre="ngModel"
+                  [(ngModel)]="tecnicoService.selectedTecnico.nombre"
+                  placeholder="Agrega nombre del Tecnico"
+              >
+            </div>
+            <div class="form-group">
+                <input type="text"
+                  class="form-control"
+                  name="direccion"
+                  #direccion="ngModel"
+                  [(ngModel)]="tecnicoService.selectedTecnico.direccion"
+                  placeholder="Agrega la direccion del tecnico"
+                >
+            </div>        
+            <div class="form-group">
+                  <input type="text"
+                    class="form-control"
+                    name="telefono"
+                    #telefono="ngModel"
+                    [(ngModel)]="tecnicoService.selectedTecnico.telefono"
+                    placeholder="Agrega el telefono del tecnico"
+                  >
+            </div>
+            <div class="form-group">
+                <input type="text"
+                  class="form-control"
+                  name="correo"
+                  #correo="ngModel"
+                  [(ngModel)]="tecnicoService.selectedTecnico.correo"
+                  placeholder="Agrega el correo del Tecnico"
+                >
+          </div>
+            <div class="form-Group">
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-plus-circle"></i>Add Tecnico
+              </button>  
+              <button class="btn btn-secondary" type="reset" (click)="resetForm(tecnicoForm)">
+                <i class="fas fa-sync-alt"></i>Limpia campos
+              </button>  
+            </div>
+        </form>
+    
+      </div>
+    </div>

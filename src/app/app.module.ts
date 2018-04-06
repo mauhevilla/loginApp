@@ -28,7 +28,8 @@ import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth'
 import{ AuthService} from './servicios/auth.service';
 import{ AuthGuard} from './guards/auth.guard';
 
-
+//servicios
+import { TecnicoService} from './servicios/tecnico.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import{ AuthGuard} from './guards/auth.guard';
     AngularFireAuthModule,  
     FlashMessagesModule 
   ],
-  providers: [AuthService,AuthGuard,FlashMessagesService],
+  providers: [AuthService,AuthGuard,FlashMessagesService,
+    TecnicoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

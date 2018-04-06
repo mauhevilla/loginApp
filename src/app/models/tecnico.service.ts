@@ -1,5 +1,5 @@
 export class Tecnico {
-  keys :string;
+  $key :string ;
   correo:string;
   direccion:string;
   nombre :string;
