@@ -34,7 +34,8 @@ import{ ToastrModule} from 'ngx-toastr';
 
 //servicios
 import { TecnicoService} from './servicios/tecnico.service';
-import {MovimientosService}from './servicios/movimientos.service';
+import { MovimientosService}from './servicios/movimientos.service';
+import { MenulatComponent } from './components/privado-page/menulat/menulat.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {MovimientosService}from './servicios/movimientos.service';
     PrivadoPageComponent,
     CrudTecnicoComponent,
     CrudMovimientosComponent,
-    NpFoundPageComponent
+    NpFoundPageComponent,
+    MenulatComponent
   ],
   imports: [
     BrowserModule,

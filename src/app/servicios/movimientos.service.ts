@@ -12,31 +12,31 @@ export class MovimientosService {
   constructor(private firebase :AngularFireDatabase) { }
 
   // metodos propios
-  getTecnicos(){
+  getMovimiento(){
     return this.listMovimientos=this.firebase.list('movimientos');
   }
   //insert
-  insertTecnico(movi :Movimientos){
+  insertMovimiento(movi :Movimientos){
     this.listMovimientos.push({
       fecha   :movi.fecha,
       descrip :movi.descrip,
       importe :movi.importe,
       tecnico :movi.tecnico,
-      tipo    : movi.tipo
+      tipo    :movi.tipo
     });
   }
   // update
-  updateTecnico(movi :Movimientos){
+  updateMovimiento(movi :Movimientos){
     this.listMovimientos.update(movi.$key,{
       fecha   :movi.fecha,
       descrip :movi.descrip,
       importe :movi.importe,
       tecnico :movi.tecnico,
-      tipo    : movi.tipo
+      tipo    :movi.tipo
     });   
   }
   // delete
-  deletTecnico($key:string){
+  deletMovimiento($key:string){
     this.listMovimientos.remove($key);
   }
 
