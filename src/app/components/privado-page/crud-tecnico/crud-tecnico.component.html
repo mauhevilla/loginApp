@@ -46,10 +46,13 @@
             <input type="text" class="form-control" name="correo" #correo="ngModel" [(ngModel)]="tecnicoService.selectedTecnico.correo"
               placeholder="Agrega el correo del Tecnico">
           </div>
+
+         
           <div class="form-Group">
             <button class="btn btn-primary" type="submit">
-              <i class="fas fa-plus-circle"></i>Add Tecnico
-            </button>
+                <i class="fas fa-plus-circle"></i>Add Tecnico
+            </button>           
+            
             <button class="btn btn-secondary" type="reset" (click)="resetForm(tecnicoForm)">
               <i class="fas fa-sync-alt"></i>Limpia campos
             </button>

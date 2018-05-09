@@ -13,13 +13,17 @@ import { PrivadoPageComponent } from './components/privado-page/privado-page.com
 import { NpFoundPageComponent } from './components/np-found-page/np-found-page.component';
 import { CrudMovimientosComponent } from './components/privado-page/crud-movimientos/crud-movimientos.component';
 import { CrudTecnicoComponent } from './components/privado-page/crud-tecnico/crud-tecnico.component';
+import { MenulatComponent } from './components/privado-page/menulat/menulat.component';
+
 
 import {FlashMessagesModule} from 'angular2-flash-messages'
 import {FlashMessagesService} from 'angular2-flash-messages'
 //angular database
 import { AngularFireModule} from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { environment} from '../environments/environment';
+//angular storage
+import { AngularFireStorageModule} from 'angularfire2/storage';
 
 //angular seguridad
 import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth'
@@ -35,7 +39,8 @@ import{ ToastrModule} from 'ngx-toastr';
 //servicios
 import { TecnicoService} from './servicios/tecnico.service';
 import { MovimientosService}from './servicios/movimientos.service';
-import { MenulatComponent } from './components/privado-page/menulat/menulat.component';
+
+
 
 
 @NgModule({
@@ -55,6 +60,7 @@ import { MenulatComponent } from './components/privado-page/menulat/menulat.comp
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AppRoutingModule,
     FormsModule,
     AngularFireAuthModule,  

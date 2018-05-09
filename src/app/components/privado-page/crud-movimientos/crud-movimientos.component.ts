@@ -20,15 +20,17 @@ import { NgForm} from '@angular/forms';
 })
 export class CrudMovimientosComponent implements OnInit {
 
-  listTecnico : Tecnico[];
+  listTecnicos : Tecnico[];
   listMovimientos : Movimientos[];
 
   constructor(private movimientosService :  MovimientosService,
+              private tecnicoServis:TecnicoService,
               private toast : ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.movimientosService.getMovimiento();
     this.resetForm();
+    this. getTecnicos();
     return this.movimientosService.getMovimiento()
     .snapshotChanges()
     .subscribe(item => {
@@ -41,7 +43,18 @@ export class CrudMovimientosComponent implements OnInit {
     });  
   } 
   // metodos propiios
-
+  getTecnicos(){
+    return this.tecnicoServis.getTecnicos()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listTecnicos=[];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"]=element.key;
+        this.listTecnicos.push(x as Tecnico);
+      });
+    });
+  }
   onSubmit(movimientosForm :NgForm)
     {
     if(movimientosForm.value.$key == null){
@@ -62,6 +75,8 @@ export class CrudMovimientosComponent implements OnInit {
       this.movimientosService.selectedMov=new Movimientos();
     }
   
+    
+
     onEditMov(movimiento : Movimientos){
     this.movimientosService.selectedMov = Object.assign({},movimiento) ;
     }

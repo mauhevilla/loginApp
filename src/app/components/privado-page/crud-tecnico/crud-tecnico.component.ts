@@ -5,9 +5,10 @@ import{ Tecnico} from '../../../models/tecnico.service';
 import { TecnicoService} from '..//../../servicios/tecnico.service' ;
 // impor toaster para memsajes
 import { ToastrService} from 'ngx-toastr';
-
 // impor ngForm
 import { NgForm} from '@angular/forms';
+
+
 
 @Component({
   selector: 'crud-tecnico',
@@ -15,10 +16,13 @@ import { NgForm} from '@angular/forms';
   styleUrls: ['./crud-tecnico.component.scss']
 })
 export class CrudTecnicoComponent implements OnInit {
-  listTecnico : Tecnico[];
-
+    listTecnico : Tecnico[];
+    
+   
   constructor(private tecnicoService : TecnicoService,
-              private toast : ToastrService) { }
+              private toast : ToastrService
+              
+            ) { }
 
   ngOnInit() {
     this.tecnicoService.getTecnicos();
@@ -34,7 +38,8 @@ export class CrudTecnicoComponent implements OnInit {
       });
     });
   }
-
+  
+  
   onSubmit (tecnicoForm : NgForm){
     if(tecnicoForm.value.$key == null){
       this.tecnicoService.insertTecnico(tecnicoForm.value)  ;
@@ -52,7 +57,6 @@ export class CrudTecnicoComponent implements OnInit {
   tecnicoForm.reset();
   this.tecnicoService.selectedTecnico=new Tecnico();
   }
-
 
   onEdit(tecnico : Tecnico){
     this.tecnicoService.selectedTecnico = Object.assign({},tecnico) ;

@@ -1,91 +1,77 @@
 <div class="container-fluid">
-    <div class="row">
-      <comp-menulat></comp-menulat>  
-      <div class="card">
-            <div class="card-body">
-                <h3 class="text-center">Lista de Movimientos</h3 >                
-                  <table class="table table-sm  table-hover">
-                        <body>
-                          <tr *ngFor ="let movimientos of listMovimientos">
-                            <td>{{movimientos.fecha}}</td>
-                            <td>{{movimientos.descrip}}</td>               
-                            <td>{{movimientos.tipo}}</td>               
-                            <td>{{movimientos.importe}}</td> 
-                            <td>{{movimientos.tecnico}}</td>
-                            <td>
-                              <a class="btn btn-secondary text-white "  (click)="onEditMov(movimientos)" >
-                                  <i class="far fa-edit"></i>
-                              </a>
-                              <a class="btn btn-danger"  (click)="onDeleteMov(movimientos.$key)">
-                                <i class="fas fa-trash-alt"></i>
-                              </a>  
-                            </td>
-                          </tr> 
-                        </body>
-                </table>    
-            </div>
-        </div>
-        <div class="card mt-5">
-            <div class="card-body">
-              <h3 class="text-center">Datos del Movimiento </h3>
-              <form #movimientosForm="ngForm" (ngSubmit)="onSubmit(movimientosForm)">      
-                    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="movimientosService.selectedMov.$key">
-                    <div class="form-group">
-                        <input type="text"
-                            class="form-control"
-                            name="fecha"
-                            #fecha="ngModel"
-                            [(ngModel)]="movimientosService.selectedMov.fecha"
-                            placeholder="Agrega la Fecha"
-                        >
-                    </div>
-                    <div class="form-group">
-                          <input type="text"
-                            class="form-control"
-                            name="descrip"
-                            #descrip="ngModel"
-                            [(ngModel)]="movimientosService.selectedMov.descrip"
-                            placeholder="Agrega la descripción   "
-                          >
-                    </div>        
-                    <div class="form-group">
-                            <input type="text"
-                              class="form-control"
-                              name="tipo"
-                              #tipo="ngModel"
-                              [(ngModel)]="movimientosService.selectedMov.tipo"
-                              placeholder="Agrega Ingreso o Gasto"
-                            >
-                    </div>
-                    <div class="form-group">
-                          <input type="text"
-                            class="form-control"
-                            name="importe"
-                            #importe="ngModel"
-                            [(ngModel)]="movimientosService.selectedMov.importe"
-                            placeholder="Agrega el importe"
-                          >
-                    </div>
-                    <div class="form-group">
-                        <input type="text"
-                          class="form-control"
-                          name="tecnico"
-                          #tecnico="ngModel"
-                          [(ngModel)]="movimientosService.selectedMov.tecnico"
-                          placeholder="Agrega el responsable"
-                        >
-                  </div>
-                  <div class="form-Group">
-                    <button class="btn btn-primary" type="submit">
-                          <i class="fas fa-plus-circle"></i>Add Movimiento
-                    </button>  
-                    <button class="btn btn-secondary" type="reset" (click)="resetForm(movimientosForm)">
-                          <i class="fas fa-sync-alt"></i>Limpia campos
-                    </button>  
-                    </div>
-                  </form>
-              
-                </div>
+  <div class="row">
+    <comp-menulat></comp-menulat>
+
+    <div class="card mt-5">
+      <div class="card-body">
+        <h3 class="text-center">Datos del Movimiento </h3>
+        <form #movimientosForm="ngForm" (ngSubmit)="onSubmit(movimientosForm)">
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="movimientosService.selectedMov.$key">
+          <div class="form-group">
+            <input type="text" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="movimientosService.selectedMov.fecha"
+              placeholder="Agrega la Fecha">
           </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="descrip" #descrip="ngModel" [(ngModel)]="movimientosService.selectedMov.descrip"
+              placeholder="Agrega la descripción   ">
+          </div>
+          <div class="form-group">            
+            <select class="form-control" name="tipo" #tipo="ngModel" [(ngModel)]="movimientosService.selectedMov.tipo" >
+                <option>Gastos</option>
+                <option>Ingresos</option>               
+            </select>            
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" 
+                  name="importe"
+                  #importe="ngModel"
+                  [(ngModel)]="movimientosService.selectedMov.importe"
+                   placeholder="Agrega el importe">
+          </div>
+          <div class="form-group">              
+              <select class="form-control" name="tecnico" #tecnico="ngModel" [(ngModel)]="movimientosService.selectedMov.tecnico"  >      
+              <option *ngFor="let tecnico of  listTecnicos" value="tecnico.nombre" >{{tecnico.nombre}}</option>                
+              </select>  
+          </div>
+          <div class="form-Group">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-plus-circle"></i>Add Movimiento
+            </button>
+            <button class="btn btn-secondary" type="reset" (click)="resetForm(movimientosForm)">
+              <i class="fas fa-sync-alt"></i>Limpia campos
+            </button>
+          </div>
+        </form>
+
+      </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center">Lista de Movimientos</h3>
+        <table class="table table-sm  table-hover">
+
+          <body>
+            <tr *ngFor="let movimientos of listMovimientos">
+              <td>{{movimientos.fecha}}</td>
+              <td>{{movimientos.descrip}}</td>
+              <td>{{movimientos.tipo}}</td>
+              <td>{{movimientos.importe}}</td>
+              <td>{{movimientos.tecnico}}</td>
+              <td>
+                <a class="btn btn-secondary text-white " (click)="onEditMov(movimientos)">
+                  <i class="far fa-edit"></i>
+                </a>
+                <a class="btn btn-danger" (click)="onDeleteMov(movimientos.$key)">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+            </tr>
+          </body>
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
 </div>
