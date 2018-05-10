@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
 // importar el modelo de datos
-import {Movimientos} from '../models/movimientos.service' ;
+import {Movimientos} from '../models/movimientos' ;
 
 @Injectable()
 export class MovimientosService {

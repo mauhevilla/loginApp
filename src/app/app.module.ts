@@ -24,7 +24,7 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { environment} from '../environments/environment';
 //angular storage
 import { AngularFireStorageModule} from 'angularfire2/storage';
-
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 //angular seguridad
 import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth'
 
@@ -39,7 +39,7 @@ import{ ToastrModule} from 'ngx-toastr';
 //servicios
 import { TecnicoService} from './servicios/tecnico.service';
 import { MovimientosService}from './servicios/movimientos.service';
-
+import {UploadService}from './servicios/upload.service';
 
 
 
@@ -57,19 +57,19 @@ import { MovimientosService}from './servicios/movimientos.service';
     MenulatComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireStorageModule,
-    AppRoutingModule,
-    FormsModule,
+    AppRoutingModule,    
     AngularFireAuthModule,  
+    AngularFireDatabaseModule,
     FlashMessagesModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule 
   ],
   providers: [AuthService,AuthGuard,FlashMessagesService,
-    TecnicoService,MovimientosService],
+    UploadService,TecnicoService,MovimientosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

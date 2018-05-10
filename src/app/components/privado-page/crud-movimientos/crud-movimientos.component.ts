@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 // traer la clase o modelo 
-import{Movimientos } from '../../../models/movimientos.service';
-import{ Tecnico} from '../../../models/tecnico.service';
+import{Movimientos } from '../../../models/movimientos';
+import{ Tecnico} from '../../../models/tecnico';
 
 // traer los servicios  necesarios
 import { TecnicoService} from '..//../../servicios/tecnico.service' ;

@@ -1,42 +1,38 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<nav class="col-md-5 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
-      <ul class="nav flex-column">
+    
+      <ul class="navbar-nav mx-auto">
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link active" href="#" routerLink="/crudTecnico">
-            <span data-feather="home"></span>
-            Crud Técnicos <span class="sr-only">(current)</span>
+          <a class="nav-link" href="#" routerLink="/crudTecnico">            
+            Crud Técnicos 
           </a>
         </li>
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link" href="#" routerLink="/crudMovimientos">
-            <span data-feather="file"></span>
+          <a class="nav-link" href="#" routerLink="/crudMovimientos">            
            Crud Movimientos
           </a>
         </li>
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link" href="#">
-            <span data-feather="shopping-cart"></span>
+          <a class="nav-link" href="#">            
             Listados de Servicios
           </a>
         </li>
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link" href="#">
-            <span data-feather="users"></span>
+          <a class="nav-link" href="#">           
             Listados de Gastos
           </a>
         </li>
         <li class="nav-item"*ngIf="!isLogin" >
-          <a class="nav-link" href="#">
-            <span data-feather="bar-chart-2"></span>
+          <a class="nav-link" href="#">           
             a definir ...
           </a>
         </li>
         <li class="nav-item" *ngIf="!isLogin">
-          <a class="nav-link" href="#">
-            <span data-feather="layers"></span>
+          <a class="nav-link" href="#">            
             Consoliddo
           </a>
         </li>
-      </ul>      
-    </div>
+      </ul>  
+    </div>      
+   
 </nav>
