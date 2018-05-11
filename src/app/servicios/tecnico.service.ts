@@ -24,8 +24,7 @@ export class TecnicoService {
       correo   :tecnico.correo,
       telefono :tecnico.telefono,
       imagenURL:miFile.url,
-      imagenNom:miFile.name
-      
+      imagenNom:miFile.name      
     });
   }
   // update

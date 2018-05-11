@@ -5,4 +5,5 @@ export class Movimientos {
   tipo :string;
   importe:number;
   tecnico:string;
+
 }

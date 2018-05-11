@@ -4,7 +4,7 @@ export class Tecnico {
   direccion:string;
   nombre :string;
   telefono:string;
-  imagenURL?:string;
-  imagenNom?:string;
+  imagenURL:string;
+  imagenNom:string;
  
 }

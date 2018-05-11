@@ -51,8 +51,11 @@ export class CrudTecnicoComponent implements OnInit {
   onSubmit (tecnicoForm : NgForm){
     if(tecnicoForm.value.$key == null){     
       this.uploadSingle();
-      this.tecnicoService.insertTecnico(tecnicoForm.value, this.currentUpload)  ;
-      this.toast.success('Operacion Agregar','Producto Grabado');
+      if(this.currentUpload.progress=100){
+        this.tecnicoService.insertTecnico(tecnicoForm.value, this.currentUpload)  ;
+        this.toast.success('Operacion Agregar','Producto Grabado');
+      }
+      
     }     
     else{
       this.tecnicoService.updateTecnico(tecnicoForm.value,this.currentUpload);

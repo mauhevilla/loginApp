@@ -10,16 +10,8 @@
           <div class="form-group">             
             <div>
                 <img class="rounded-circle" [src]="tecnicoService.selectedTecnico.imagenURL" width="150" height="150">     
-            </div>    
-                    
-                           
-          
-           <div *ngIf="currentUpload">
-              <div class="progress">
-                <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-              </div>
-              Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-            </div>            
+            </div>  
+                      
             <label>
                    <input type="file" (change)="detectFiles($event)">
             </label>           
@@ -41,9 +33,16 @@
             <input type="text" class="form-control" name="correo" #correo="ngModel" [(ngModel)]="tecnicoService.selectedTecnico.correo"
               placeholder="Agrega el correo del Tecnico">
           </div>         
-          <div class="form-Group">
+          <div class="form-Group">         
+            
             <button [disabled]="!selectedFiles" class="btn btn-primary" type="submit">
                 <i class="fas fa-plus-circle"></i>Add Tecnico
+                <div *ngIf="currentUpload">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                  </div>
+                  Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+               </div> 
             </button>           
             
             <button class="btn btn-secondary" type="reset" (click)="resetForm(tecnicoForm)">
@@ -60,9 +59,9 @@
         <table class="table table-sm  table-hover">
 
           <body>
-            <tr *ngFor="let tecnico of listTecnico">
-              <td>{{tecnico.nombre}}</td>
-              <td>{{tecnico.direccion}}</td>
+            <tr *ngFor="let tecnico of listTecnico">             
+              <td><img src="{{tecnico.imagenURL}}" alt="Logotipo de HTML5" width="100" height="100">    </td>
+              <td>{{tecnico.nombre}}</td>             
               <td>{{tecnico.telefono}}</td>
               <td>{{tecnico.correo}}</td>
               <td>
