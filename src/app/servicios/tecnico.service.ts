@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import * as firebase from 'firebase';
 import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
 import { Tecnico} from '../models/tecnico';
 import { Upload } from '../models/upload';
@@ -9,38 +10,97 @@ export class TecnicoService {
 
   listTecnico : AngularFireList<any>;
   selectedTecnico : Tecnico = new Tecnico();
+  
+  //subida de archivo
+  private basePath: string = '/uploads';
 
-  constructor(private firebase :AngularFireDatabase) { }
+  constructor(private firebase :AngularFireDatabase,
+              private af: AngularFirestore) { }
 
-  // metodos propios
-  getTecnicos(){
+ 
+  /////////////////////////////////////////////////////////////////////////////////
+  // mis metodos generales
+  pushUpload(upload: Upload,tecnico :Tecnico) { 
+    let storageRef = firebase.storage().ref();
+    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);    
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        //upload in progress
+        upload.progress = Math.round((uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100);
+      },
+      (error) => {
+        // upload failed
+        console.log(error)
+      },
+      () => {
+        // upload success        
+        tecnico.imagenURL=uploadTask.snapshot.downloadURL;
+        tecnico.imagenNom= upload.file.name;
+        //grabar los datos 
+        console.log(upload);   
+        //this.insertTecnico(tecnico )   
+        this.listTecnico.push({
+          nombre   :tecnico.nombre,
+          direccion:tecnico.direccion,
+          correo   :tecnico.correo,
+          telefono :tecnico.telefono,
+          imagenURL:tecnico.imagenURL,
+          imagenNom:tecnico.imagenNom  
+        });
+      }
+    );
+  }
+/*
+  updateTecnico(upload: Upload,tecnico :Tecnico){
+    if(tecnico.imagenNom==upload.file.name){
+      this.updateDBTecnico(tecnico );
+    }else{
+      this.deleteFileStorage(tecnico.imagenNom);
+      this.pushUpload(upload,tecnico);
+    }
+
+  }
+
+  deletTecnico(tecnico :Tecnico){
+   // this.deleteFileStorage(tecnico.imagenNom);
+    this.deletDBTecnico(tecnico.$key );
+  }
+*/
+
+// Firebase files must have unique names in their respective storage dir
+// So the name serves as a unique key
+   deleteFileStorage(name:string) {
+       let storageRef = firebase.storage().ref();
+       storageRef.child(`${this.basePath}/${name}`).delete();
+  } 
+   // metodos db tecnico
+   getTecnicos(){
     return this.listTecnico=this.firebase.list('tecnico');
   }
-  //insert
-  insertTecnico(tecnico :Tecnico,miFile :Upload){
+  //insert db tecnico
+  private insertTecnico(tecnico :Tecnico){
     this.listTecnico.push({
       nombre   :tecnico.nombre,
       direccion:tecnico.direccion,
       correo   :tecnico.correo,
       telefono :tecnico.telefono,
-      imagenURL:miFile.url,
-      imagenNom:miFile.name      
+      imagenURL:tecnico.imagenURL,
+      imagenNom:tecnico.imagenNom  
     });
   }
-  // update
-  updateTecnico(tecnico :Tecnico,miFile :Upload){
+  // update db tecnico
+  updateDBTecnico(tecnico :Tecnico){    
     this.listTecnico.update(tecnico.$key,{
       nombre   :tecnico.nombre,
       direccion:tecnico.direccion,
       correo   :tecnico.correo,
       telefono :tecnico.telefono,
-      imagenURL:miFile.url,
-      imagenNom:miFile.name
+      imagenURL:tecnico.imagenURL,
+      imagenNom: tecnico.imagenNom
     });   
   }
-  // delete
-  deletTecnico($key:string){
-    this.listTecnico.remove($key);
+  // delete db tecnico
+  deletDBTecnico($key :string){
+       this.listTecnico.remove($key);    
   }
-
 }

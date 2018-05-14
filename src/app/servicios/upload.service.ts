@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
+/////////////import { AngularFireDatabase,AngularFireList} from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 //la clase
@@ -11,21 +11,18 @@ import { Upload } from '../models/upload';
 @Injectable()
 export class UploadService {
   // variables de datos
-  listTecnico : AngularFireList<any>;
+
   
   //variables de imagen
   private basePath: string = '/uploads';
   uploads: AngularFirestoreCollection<Upload[]>;
 
-  constructor(private af: AngularFirestore,
-              private firebase :AngularFireDatabase) { }
+  constructor(private af: AngularFirestore ) { }
 
   // mis metodos de imagen
   pushUpload(upload: Upload) { 
-
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
-    
+    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);    
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
         //upload in progress
@@ -39,8 +36,7 @@ export class UploadService {
         // upload success
         upload.url = uploadTask.snapshot.downloadURL
         upload.name = upload.file.name
-        //grabar los datos
-        
+        //grabar los datos        
       }
     );
   }
