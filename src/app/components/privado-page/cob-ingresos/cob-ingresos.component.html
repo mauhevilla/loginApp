@@ -1,33 +1,82 @@
-<div class="card">
-  <div class="card-body">
-    <h3 class="text-center">Lista de Cobranza</h3>
-    <table class="table table-sm  table-hover">      
-      <thead>
+<div class="container-fluid">
+  <div class="row">
+    <comp-menulat></comp-menulat>
+    <div *ngIf="servicioCobranza.selectedMov.importe >= 0" >
+        <div class="card-body">
+          <h3 class="text-center">Trabajo </h3>
+          <form #pagoForm="ngForm" (ngSubmit)="onSubmit(pagoForm)">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="servicioCobranza.selectedMov.$key">
+            <div class="form-group">
+              Fecha :
+              <input type="text" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="servicioCobranza.selectedMov.fecha"
+                placeholder="Agrega la Fecha">            
+               Detalle:           
+              <input type="text" class="form-control" name="descrip" #descrip="ngModel" [(ngModel)]="servicioCobranza.selectedMov.descrip"
+                placeholder="Agrega la descripción   ">   
+              Importe :          
+              <input type="text" class="form-control" name="importe" #importe="ngModel" [(ngModel)]="servicioCobranza.selectedMov.importe"
+                placeholder="Agrega el importe">
+            </div>  
+            <h3 class="text-center">Datos del Pago </h3>
+            <div class="form-group">
+                Fecha Pago:
+                <input type="text" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="servicioCobranza.selectedMov.fecha"
+                  placeholder="Agrega la Fecha de paago">            
+                Monto:   
+                <input type="text" class="form-control" name="importe" #importe="ngModel" [(ngModel)]="servicioCobranza.selectedMov.importe"
+                  placeholder="Agrega el importe">
+                Moneda : 
+                <input type="text" class="form-control" name="descrip" #descrip="ngModel" [(ngModel)]="servicioCobranza.selectedMov.descrip"
+                  placeholder="Agrega la Moneda (Efectivi, cheque)   ">  
+              </div>  
+            <div class="form-Group">
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-plus-circle"></i>Add Pago
+              </button>
+              <button class="btn btn-secondary" type="reset" (click)="resetForm(pagoForm)">
+                <i class="fas fa-sync-alt"></i>Limpia campos
+              </button>
+            </div>
+          </form>  
+        </div>
+    </div>
+
+
+
+
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center">Lista de Ingresos Pendientes</h3>
+        <table class="table table-sm  table-hover">
+          <thead>
             <tr>
               <th scope="col">Fecha</th>
               <th scope="col">Descrip</th>
-              <th scope="col">Tipo</th>
               <th scope="col">Importe</th>
-              <th scope="col">Tecnico</th>
+              <th scope="col">Tecnico</th>             
+              <th scope="col">Cobrado</th>
+              <th scope="col">Tarea</th>
             </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let movimientos of listMovimientos">
-          <td>{{movimientos.fecha}}</td>
-          <td>{{movimientos.descrip}}</td>
-          <td>{{movimientos.tipo}}</td>
-          <td>{{movimientos.importe}}</td>
-          <td>{{movimientos.tecnico}}</td>
-          <td>
-            <a class="btn btn-secondary text-black " (click)="onEditMov(movimientos)">Edit
-              <i class="far fa-edit"></i>
-            </a>
-            <a class="btn btn-danger" (click)="onDeleteMov(movimientos.$key)">Borrar
-              <i class="fas fa-trash-alt"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            <tr *ngFor="let movimientos of listMovimientos">
+              <td>{{movimientos.fecha}}</td>
+              <td>{{movimientos.descrip}}</td>
+              <td>{{movimientos.importe}}</td>
+              <td>{{movimientos.tecnico}}</td>
+              <td>{{movimientos.cobrado}}</td>
+              
+              <td>
+                <a class="btn btn-secondary text-black " (click)="onPagar(movimientos)">Cobrar
+                  <i class="far fa-edit"></i>
+                </a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

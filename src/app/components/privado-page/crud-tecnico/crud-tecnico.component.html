@@ -53,31 +53,41 @@
 
       </div>
     </div>
-    <div class="card">      
-      <div class="card-body">
-        <h3 class="text-center">Lista de Tecnicos</h3>
-        <table class="table table-sm  table-hover">
+<div class="card">
+  <div class="card-body">
+    <h3 class="text-center">Lista de Tecnicos</h3>
+    <table class="table table-sm  table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Foto</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Opcion</th>
 
-          <body>
-            <tr *ngFor="let tecnico of listTecnico">             
-              <td><img src="{{tecnico.imagenURL}}" alt="Logotipo de HTML5" width="100" height="100">
-                
-              </td>
-              <td>{{tecnico.nombre}}</td>             
-              <td>{{tecnico.telefono}}</td>
-              <td>{{tecnico.correo}}</td>
-              <td>
-                <a class="btn btn-secondary text-Black " (click)="onEdit(tecnico)">Editar
-                 
-                </a>
-                <a class="btn btn-danger" (click)="onDelete(tecnico)">Borrar
-                 
-                </a>
-              </td>
-            </tr>
-          </body>
-        </table>
-      </div>
-    </div>
-    
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tecnico of listTecnico">
+          <td>
+            <img src="{{tecnico.imagenURL}}" alt="Logotipo de HTML5" width="100" height="100">
+
+          </td>
+          <td>{{tecnico.nombre}}</td>
+          <td>{{tecnico.telefono}}</td>
+          <td>{{tecnico.correo}}</td>
+          <td>
+            <a class="btn btn-secondary text-Black " (click)="onEdit(tecnico)">Editar
+
+            </a>
+            <a class="btn btn-danger" (click)="onDelete(tecnico)">Borrar
+
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+</div>
