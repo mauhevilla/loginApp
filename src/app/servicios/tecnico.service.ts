@@ -47,25 +47,11 @@ export class TecnicoService {
           imagenURL:tecnico.imagenURL,
           imagenNom:tecnico.imagenNom  
         });
+        upload.progress =0;
       }
     );
   }
-/*
-  updateTecnico(upload: Upload,tecnico :Tecnico){
-    if(tecnico.imagenNom==upload.file.name){
-      this.updateDBTecnico(tecnico );
-    }else{
-      this.deleteFileStorage(tecnico.imagenNom);
-      this.pushUpload(upload,tecnico);
-    }
 
-  }
-
-  deletTecnico(tecnico :Tecnico){
-   // this.deleteFileStorage(tecnico.imagenNom);
-    this.deletDBTecnico(tecnico.$key );
-  }
-*/
 
 // Firebase files must have unique names in their respective storage dir
 // So the name serves as a unique key

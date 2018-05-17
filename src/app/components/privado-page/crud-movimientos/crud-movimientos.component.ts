@@ -28,9 +28,10 @@ export class CrudMovimientosComponent implements OnInit {
               private toast : ToastrService) { }
 
   ngOnInit() {    
-    this.movimientosService.getMovimiento();
+    this.movimientosService.getMovimiento();    
+    this.getTecnicos();
     this.resetForm();
-    this. getTecnicos();
+    
     return this.movimientosService.getMovimiento()
     .snapshotChanges()
     .subscribe(item => {

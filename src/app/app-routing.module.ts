@@ -8,7 +8,8 @@ import {NpFoundPageComponent} from './components/np-found-page/np-found-page.com
 import {PrivadoPageComponent} from './components/privado-page/privado-page.component';
 import {RegisterPageComponent}from './components/register-page/register-page.component'
 import { CrudTecnicoComponent} from './components/privado-page/crud-tecnico/crud-tecnico.component';
-import {CrudMovimientosComponent}  from './components/privado-page/crud-movimientos/crud-movimientos.component';
+import { CrudMovimientosComponent}  from './components/privado-page/crud-movimientos/crud-movimientos.component';
+import { CobIngresosComponent } from './components/privado-page/cob-ingresos/cob-ingresos.component';
 
 import {AuthGuard} from './guards/auth.guard';
 
@@ -19,8 +20,11 @@ const routes: Routes = [
   {path:'privado',component:PrivadoPageComponent,canActivate:[AuthGuard]},
   {path:'crudTecnico',component:CrudTecnicoComponent,canActivate:[AuthGuard]},
   {path:'crudMovimientos',component:CrudMovimientosComponent,canActivate:[AuthGuard]},
+  {path:'cobransas',component:CobIngresosComponent,canActivate:[AuthGuard]},
   {path:'**',component:NpFoundPageComponent},
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

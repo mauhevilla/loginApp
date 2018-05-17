@@ -22,7 +22,9 @@ export class MovimientosService {
       descrip :movi.descrip,
       importe :movi.importe,
       tecnico :movi.tecnico,
-      tipo    :movi.tipo
+      tipo    :movi.tipo,
+      fchfin  :"",
+      cobrado :"N"
     });
   }
   // update

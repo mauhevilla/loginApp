@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="text-center">Lista de Cobranza</h3>
+    <table class="table table-sm  table-hover">      
+      <thead>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Descrip</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Importe</th>
+              <th scope="col">Tecnico</th>
+            </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movimientos of listMovimientos">
+          <td>{{movimientos.fecha}}</td>
+          <td>{{movimientos.descrip}}</td>
+          <td>{{movimientos.tipo}}</td>
+          <td>{{movimientos.importe}}</td>
+          <td>{{movimientos.tecnico}}</td>
+          <td>
+            <a class="btn btn-secondary text-black " (click)="onEditMov(movimientos)">Edit
+              <i class="far fa-edit"></i>
+            </a>
+            <a class="btn btn-danger" (click)="onDeleteMov(movimientos.$key)">Borrar
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

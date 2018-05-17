@@ -35,7 +35,6 @@ export class CrudTecnicoComponent implements OnInit {
   ngOnInit() {
     this.tecnicoService.getTecnicos();
     this.resetForm();
-
     return this.tecnicoService.getTecnicos()
       .snapshotChanges()
       .subscribe(item => {
@@ -49,15 +48,13 @@ export class CrudTecnicoComponent implements OnInit {
   }
 
   onSubmit(tecnicoForm: NgForm) {
-    if (tecnicoForm.value.$key == null) {
-      let file = this.selectedFiles.item(0);
-      this.currentUpload = new Upload(file);
+    let file = this.selectedFiles.item(0);
+    this.currentUpload = new Upload(file);
+    
+    if (tecnicoForm.value.$key == null) {      
       this.tecnicoService.pushUpload(this.currentUpload, tecnicoForm.value);
       this.toast.success('Operacion Agregar', 'Producto Grabado');
-    }
-    else {
-      let file = this.selectedFiles.item(0);
-       this.currentUpload = new Upload(file);
+    } else {     
       if (tecnicoForm.value.imagenNom == this.currentUpload.file.name) {
         this.tecnicoService.updateDBTecnico(tecnicoForm.value)
       } else {        
@@ -68,6 +65,7 @@ export class CrudTecnicoComponent implements OnInit {
       }
       this.resetForm(tecnicoForm);
     }
+    
   }
   // 
   // funciones de imagen 
@@ -76,12 +74,14 @@ export class CrudTecnicoComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-
   // fin funciones de imagen
   resetForm(tecnicoForm?: NgForm) {
-    if (tecnicoForm != null)
+    if (tecnicoForm != null){      
+      //this.tecnicoService.selectedTecnico = new Tecnico();
+      //this.currentUpload = new Upload(null);
       tecnicoForm.reset();
-    this.tecnicoService.selectedTecnico = new Tecnico();
+    }
+    
   }
 
   onEdit(tecnico: Tecnico) {

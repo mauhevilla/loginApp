@@ -14,7 +14,7 @@ import { NpFoundPageComponent } from './components/np-found-page/np-found-page.c
 import { CrudMovimientosComponent } from './components/privado-page/crud-movimientos/crud-movimientos.component';
 import { CrudTecnicoComponent } from './components/privado-page/crud-tecnico/crud-tecnico.component';
 import { MenulatComponent } from './components/privado-page/menulat/menulat.component';
-
+import { CobIngresosComponent } from './components/privado-page/cob-ingresos/cob-ingresos.component';
 
 import {FlashMessagesModule} from 'angular2-flash-messages'
 import {FlashMessagesService} from 'angular2-flash-messages'
@@ -39,7 +39,8 @@ import{ ToastrModule} from 'ngx-toastr';
 //servicios
 import { TecnicoService} from './servicios/tecnico.service';
 import { MovimientosService}from './servicios/movimientos.service';
-import {UploadService}from './servicios/upload.service';
+import { UploadService}from './servicios/upload.service';
+import {CobranzasService }from './servicios/cobranzas.service';
 
 
 
@@ -54,7 +55,8 @@ import {UploadService}from './servicios/upload.service';
     CrudTecnicoComponent,
     CrudMovimientosComponent,
     NpFoundPageComponent,
-    MenulatComponent
+    MenulatComponent,
+    CobIngresosComponent
   ],
   imports: [
     BrowserModule,FormsModule,
@@ -69,7 +71,7 @@ import {UploadService}from './servicios/upload.service';
     BrowserAnimationsModule 
   ],
   providers: [AuthService,AuthGuard,FlashMessagesService,
-    UploadService,TecnicoService,MovimientosService],
+    UploadService,TecnicoService,MovimientosService,CobranzasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
